@@ -1,0 +1,25 @@
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.*.local
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###
+/public/images/
+/.idea/
+/src/Kernel.php
+/config/services.yaml
+/config/bundles.php
+/config/packages/
+/config/
+/config/bootstrap.php
+/config/routes/
+/public/css/
+/public/fonts/
+/public/js/
+/bin/console
