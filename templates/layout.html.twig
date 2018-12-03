@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-
+{% set categories =categorie_service.findAll() %}
 
 
 
@@ -35,6 +35,8 @@
 
 
 {% block body %}
+
+   {{ dump(categories) }}
     <!--preload-->
     <div class="loader" id="page-loader">
         <div class="loading-wrapper">

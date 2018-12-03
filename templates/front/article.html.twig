@@ -1,4 +1,5 @@
 {% extends "layout.html.twig" %}
+{% set active = article.categorie.slug %}
 
 {% block page_title %}
     {{ article.getTitre }}
@@ -32,9 +33,7 @@
                 <div class="post-detail-img">
                     <img alt="" src="images/product/4.jpg" />
                 </div>
-                <p class="quote">Sed porttitor lectus nibh. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Quisque velit nisi, pretium ut lacinia in, elementum id enim.</p>
-
-                <p>Curabitur aliquet quam id dui posuere blandit. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Pellentesque in ipsum id orci porta dapibus.</p>
+                <p class="quote">Le jour ou Queen à monopoliser le concert</p>
 
                 <h4>Nulla porttitor accumsan tincidunt.</h4>
 
@@ -52,39 +51,7 @@
             <div class="social-detail">
                 <span>   Share article</span>
 
-                <ul class="list-social-icon">
-                    <li>
-                        <a href="#" class="facebook">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="twitter">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="google">
-                            <i class="fa fa-google"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="youtube">
-                            <i class="fa fa-youtube-play"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="pinterest">
-                            <i class="fa fa-pinterest-p"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="rss">
-                            <i class="fa fa-rss"></i>
-                        </a>
-                    </li>
-
-                </ul>
+                {% include 'components/_social-detail.html.twig' %}
             </div>
 
             <!--related post-->
@@ -104,12 +71,20 @@
                     <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class="spotlight-item-thumb">
                             <div class="spotlight-item-thumb-img">
-                                <a href="#">
+                                <a href="{{ path('front_article', {
+                                    'categorie': article.categorie.slug,
+                                    'slug': article.slug,
+                                    'id': article.id
+                                }) }}">
                                     <img alt="{{ article.titre }}" src="{{ asset('images/music/'~article.featuredImage) }}" alt="{{ article.titre }}">
                                 </a>
                                 <a href="#" class="cate-tag">{{ article.categorie.nom }}</a>
                             </div>
-                            <h3><a href="#">{{ article.titre }}</a></h3>
+                            <h3><a href="{{ path('front_article', {
+                                    'categorie': article.categorie.slug,
+                                    'slug': article.slug,
+                                    'id': article.id
+                                }) }}">{{ article.titre }}</a></h3>
                             <div class="meta-post">
                                 <a href="#">
                                     Sue	Benson
@@ -146,6 +121,7 @@
             </section>
             {% endif %}
         </div>
-        {% include 'components/_sidebar.html.twig' %}
+        {#{% include 'components/_sidebar.html.twig' %}#}
+        {{ render(controller('App\\Controller\\TechNews\\FrontController::sidebar')) }}
     </div>
 {% endblock %}

@@ -1,3 +1,5 @@
+{% dump(app.request)  %}
+
 <!--menu mobile-->
 <nav class="menu-res hidden-lg hidden-md ">
     <div class="menu-res-inner">
@@ -28,18 +30,21 @@
                 <span>MENU</span>
             </div>
             <ul class="hidden-sm hidden-xs">
-                <li>
+                <li {% if active =='index' %}class="current"{% endif %}>
+
+
                     <a href="{{ path('index') }}">Accueil</a>
                 </li>
-                <li>
-                    <a href="{{ path('index_categorie',{'slug':'politique'}) }}">Politique</a>
-                </li>
-                <li>
-                    <a href="{{ path('index_categorie',{'slug':'economie'}) }}"> Economie</a>
-                </li>
-                <li>
-                    <a href="{{ path('index_categorie',{'slug':'sport'}) }}">Sport</a>
-                </li>
+
+                {% for categorie in categories  %}
+                  <li {{ active == categorie.nom ? 'class="current"' }}>
+                      <a href="{{ path('index_categorie',{
+
+                      'slug': categorie.slug
+                      }) }}">{{ categorie.nom }}</a>
+                  </li>
+                {% endfor %}
+
             </ul>
             <div class="search-icon">
                 <div class="search-icon-inner">
@@ -51,3 +56,4 @@
                 </div>
             </div>
         </nav>
+

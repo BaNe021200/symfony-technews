@@ -63,10 +63,16 @@ class FrontController extends Controller
         #    ->getArticles();
 
         #methode 3
+        if (null===$categorie){
+            #    throw new $this->createNotFoundException("nous n'avons pas trouvé votre artice ID");
+            return $this->redirectToRoute('index',[],Response::HTTP_MOVED_PERMANENTLY);
 
-        dump($this->article());
+        }
+        #dump($this->article());
         return $this->render('front/categorie.html.twig',[
-            'articles' =>$categorie->getArticles()
+            'articles' =>$categorie->getArticles(),
+            'categorie' => $categorie
+
 
 
         ]);
@@ -128,6 +134,26 @@ class FrontController extends Controller
 
         ]);
     }
+
+
+    public function sidebar()
+    {
+        $repository = $this->getDoctrine()->getRepository(Article::class);
+        $articles = $repository->findLatestArticles();
+        $specials = $repository->findSpecialArticles();
+
+        return $this->render('components/_sidebar.html.twig',[
+
+            'articles'=> $articles,
+            'specials'=> $specials
+
+        ]);
+
+
+    }
+
+
+
 
 
 

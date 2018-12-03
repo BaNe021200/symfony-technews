@@ -47,4 +47,13 @@ class CategorieRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findCategoriesHavingArticles()
+    {
+        return $this->createQueryBuilder('c')
+            ->addSelect('c')
+            ->join('c.articles','a')
+            ->getQuery()
+            ->getResult();
+    }
 }
