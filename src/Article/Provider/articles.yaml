@@ -1,0 +1,104 @@
+data:
+  article1 :
+    id : 1
+    titre : 'Tip Aligning Digital Marketing with Business Goals and Objectives'
+    contenu : '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>'
+    featuredimage : '3.jpg'
+    special : false
+    spotlight : true
+    datecreation : 2017-02-26 09:37:18
+    categorie:
+      id : 2
+      libelle : 'Business'
+    auteur:
+      id : 1
+      prenom : 'Hugo'
+      nom : 'LIEGEARD'
+      email : 'wf3@hl-media.fr'
+
+
+  article2 :
+    id : 1
+    titre : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit'
+    contenu : '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>'
+    featuredimage : '2.jpg'
+    special : false
+    spotlight : true
+    datecreation : 2017-02-27 09:37:18
+    categorie:
+      id : 2
+      libelle : 'Business'
+    auteur:
+      id : 1
+      prenom : 'Hugo'
+      nom : 'LIEGEARD'
+      email : 'wf3@hl-media.fr'
+
+  article3 :
+    id : 1
+    titre : 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+    contenu : '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>'
+    featuredimage : '1.jpg'
+    special : false
+    spotlight : true
+    datecreation : 2017-02-28 09:37:18
+    categorie:
+      id : 2
+      libelle : 'Business'
+    auteur:
+      id : 1
+      prenom : 'Hugo'
+      nom : 'LIEGEARD'
+      email : 'wf3@hl-media.fr'
+
+  article4 :
+    id : 1
+    titre : 'Tip Aligning Digital Marketing with Business Goals and Objectives'
+    contenu : '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>'
+    featuredimage : '3.jpg'
+    special : false
+    spotlight : true
+    datecreation : 2017-03-01 09:37:18
+    categorie:
+      id : 2
+      libelle : 'Business'
+    auteur:
+      id : 1
+      prenom : 'Hugo'
+      nom : 'LIEGEARD'
+      email : 'wf3@hl-media.fr'
+
+
+  article5 :
+    id : 1
+    titre : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit'
+    contenu : '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>'
+    featuredimage : '2.jpg'
+    special : false
+    spotlight : true
+    datecreation : 2017-02-26 09:37:18
+    categorie:
+      id : 2
+      libelle : 'Business'
+    auteur:
+      id : 1
+      prenom : 'Hugo'
+      nom : 'LIEGEARD'
+      email : 'wf3@hl-media.fr'
+
+  article6 :
+    id : 1
+    titre : 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+    contenu : '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>'
+    featuredimage : '1.jpg'
+    special : false
+    spotlight : true
+    datecreation : 2017-03-26 09:37:18
+    categorie:
+      id : 2
+      libelle : 'techno'
+    auteur:
+      id : 1
+      prenom : 'Hugo'
+      nom : 'LIEGEARD'
+      email : 'wf3@hl-media.fr'

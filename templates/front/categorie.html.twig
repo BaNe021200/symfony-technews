@@ -1,6 +1,6 @@
 {% extends "layout.html.twig" %}
 {% block page_title %}
-    Catégorie
+    {{categorie.nom}}
 {% endblock %}
 
 {% block content %}
@@ -8,7 +8,7 @@
         <!--colleft-->
         <div class="col-md-8 col-sm-12">
             <div class="box-caption">
-                <span>Computing</span>
+                <span>{{ categorie.titre }}</span>
             </div>
             <!--list-news-cate-->
             <div class="list-news-cate">

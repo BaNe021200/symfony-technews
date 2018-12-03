@@ -16,7 +16,7 @@
 /config/services.yaml
 /config/bundles.php
 /config/packages/
-/config/
+
 /config/bootstrap.php
 /config/routes/
 /public/css/
