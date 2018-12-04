@@ -12,7 +12,15 @@ namespace App\Controller\TechNews;
 use App\Entity\Article;
 use App\Entity\Categorie;
 use App\Entity\Membre;
+use App\Repository\MembreRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -57,6 +65,97 @@ class ArticleController extends Controller
 
 
         );
+
+    }
+
+
+    /**
+     * @Route("/newArticle",name="new_article")
+     */
+    public function newArticle()
+    {
+        $membre =$this->getDoctrine()->getRepository(Membre::class)
+        ->find(2);
+
+        $article = new Article();
+        $article->setMembre($membre);
+        $form= $this->createFormBuilder($article)
+            ->add('titre', TextType::class,[
+                'required'=>true,
+                'label'=> "titre de l'article",
+                'attr'=>[
+                    'placeholder'=>"titre de l'article"
+                ]
+
+
+            ])->add('categorie',EntityType::class,[
+                'class'=>Categorie::class,
+                'choice_label'=>'nom',
+                'expanded'=>false,
+                'multiple'=>false,
+                'label'=>"Catégories",
+
+
+            ])
+
+
+            ->add('contenu', TextareaType::class,[
+                'required'=>true,
+                'label'=> "Contenu",
+                'attr'=>[
+                    'placeholder'=>"contenu"
+                ]
+
+
+            ])
+            ->add('featuredImage', FileType::class,[
+                'required'=>true,
+                'label'=> "images",
+                'attr'=>[
+                    'class'=>"dropify"
+                ]
+
+
+            ])
+            ->add('special', CheckboxType::class,[
+
+                'required'=>false,
+
+                'attr'=>[
+                    'data-toggle'=>"toggle",
+                    'data-on'=> 'oui',
+                    'data-off'=>'non',
+                ]
+
+
+            ])
+            ->add('spotlight', CheckboxType::class,[
+
+                'required'=>false,
+
+                'attr'=>[
+                    'data-toggle'=>"toggle",
+                    'data-on'=> 'oui',
+                    'data-off'=>'non',
+                ]
+
+
+            ])
+
+            ->add('submit', SubmitType::class,[
+                'label'=> "submit",
+
+
+
+            ])
+        ->getForm();
+
+        return $this->render('article/form.html.twig',[
+            'form'=>$form->createView()
+
+        ]);
+
+
 
     }
 }
