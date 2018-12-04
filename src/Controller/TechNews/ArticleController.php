@@ -13,6 +13,7 @@ use App\Entity\Article;
 use App\Entity\Categorie;
 use App\Entity\Membre;
 use App\Repository\MembreRepository;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -21,6 +22,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -72,7 +74,7 @@ class ArticleController extends Controller
     /**
      * @Route("/newArticle",name="new_article")
      */
-    public function newArticle()
+    public function newArticle(Request $request)
     {
         $membre =$this->getDoctrine()->getRepository(Membre::class)
         ->find(2);
@@ -99,11 +101,14 @@ class ArticleController extends Controller
             ])
 
 
-            ->add('contenu', TextareaType::class,[
+            ->add('contenu', CKEditorType::class,[
                 'required'=>true,
                 'label'=> "Contenu",
                 'attr'=>[
                     'placeholder'=>"contenu"
+                ],
+                'config' =>[
+                    'toolbar'=>'standard'
                 ]
 
 
@@ -149,6 +154,8 @@ class ArticleController extends Controller
 
             ])
         ->getForm();
+
+
 
         return $this->render('article/form.html.twig',[
             'form'=>$form->createView()
