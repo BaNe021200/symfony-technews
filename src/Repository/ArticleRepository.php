@@ -92,7 +92,7 @@ class ArticleRepository extends ServiceEntityRepository
     public function findSpecialArticles()
     {
         return $this->createQueryBuilder('a')
-            ->where('a.spotlight =1')
+            ->where('a.special =1')
             ->orderBy('a.id', 'DESC')
             ->setMaxResults(self::Max_Results)
             ->getQuery()

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+//use Symfony\Component\Form\Extension\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
@@ -33,6 +34,8 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     *
      */
     private $featuredImage;
 
@@ -116,16 +119,16 @@ class Article
         return $this;
     }
 
-    public function getFeaturedImage(): ?string
+    public function getFeaturedImage()
     {
         return $this->featuredImage;
     }
 
-    public function setFeaturedImage(string $featuredImage): self
+    public function setFeaturedImage($featuredImage): void
     {
         $this->featuredImage = $featuredImage;
 
-        return $this;
+        //return $this;
     }
 
     public function getSpecial(): ?bool

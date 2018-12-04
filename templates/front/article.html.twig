@@ -10,6 +10,13 @@
         <!--colleft-->
         <div class="col-md-8 col-sm-12">
             <!--post-detail-->
+
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-info">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
             <article class="post-detail">
                 <h1>{{ article.getTitre }}</h1>
                 <div class="meta-post">
@@ -54,7 +61,7 @@
                 <div class="row">
                     {% for article  in suggestions %}
 
-                        {{ dump(suggestions) }}
+                       {# {{ dump(suggestions) }}#}
 
                     <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class="spotlight-item-thumb">
@@ -73,37 +80,18 @@
                                     'slug': article.slug,
                                     'id': article.id
                                 }) }}">{{ article.titre }}</a></h3>
-                            <div class="meta-post">
+                            {##}<div class="meta-post">
                                 <a href="#">
-                                    Sue	Benson
+                                    {{ article.getMembre.nom~' '~article.membre.prenom }}
                                 </a>
                                 <em></em>
                                 <span>
-                                            22 Sep 2016
+                                             {{ article.dateCreation | date('d/m/Y') }}
                                         </span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4 col-xs-12">
-                        <div class="spotlight-item-thumb">
-                            <div class="spotlight-item-thumb-img">
-                                <a href="#">
-                                    <img alt="" src="images/product/4.jpg">
-                                </a>
-                                <a href="#" class="cate-tag">Computing</a>
-                            </div>
-                            <h3><a href="#">Six big ways MacOS Sierra is going to change your Apple experience</a></h3>
-                            <div class="meta-post">
-                                <a href="#">
-                                    Marion	Craig
-                                </a>
-                                <em></em>
-                                <span>
-                                            21 Sep 2016
-                                        </span>
-                            </div>
-                        </div>
-                    </div>
+
                     {% endfor %}
                 </div>
             </section>
