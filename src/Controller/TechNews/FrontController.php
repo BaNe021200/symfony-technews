@@ -68,7 +68,7 @@ class FrontController extends Controller
             return $this->redirectToRoute('index',[],Response::HTTP_MOVED_PERMANENTLY);
 
         }
-        #dump($this->article());
+
         return $this->render('front/categorie.html.twig',[
             'articles' =>$categorie->getArticles(),
             'categorie' => $categorie

@@ -22,33 +22,7 @@
         <section class="owl-carousel owl-spotlight">
             {% for article in articles %}
                 {% if article.spotlight %}
-                    <div>
-
-                        <article class="spotlight-item">
-
-                            <div class="spotlight-img">
-                                <img alt="" src="images/product/16.jpg" class="img-responsive"/>
-                                <a href="#" class="cate-tag">Mobile</a>
-                            </div>
-                            <div class="spotlight-item-caption">
-                                <h2 class="font-heading">
-                                    <a href="article.html">
-                                        {{ article.titre }}
-                                    </a>
-                                </h2>
-                                <div class="meta-post">
-                                    <a href="#">
-                                        Super User
-                                    </a>
-                                    <em></em>
-                                    <span>
-                                        24 Sep 2016
-                                    </span>
-                                </div>
-                                {# accroche ici bientot #}
-                            </div>
-                        </article>
-                    </div>
+                    {% include 'components/_spotlight.html.twig' %}
                 {% endif %}
             {% endfor %}
 
@@ -59,34 +33,8 @@
 
             <div class="row">
                 {% for article in articles %}
+                    {% include 'components/_spotlight-thumbs.html.twig' %}
 
-                    <div class="col-md-4 col-sm-4 col-xs-12">
-                        <div class="spotlight-item-thumb">
-                            <div class="spotlight-item-thumb-img">
-                                <a href="#">
-                                    <img alt="" src="{{ asset('images/music/'~article.featuredimage) }}"/>
-                                </a>
-                                <a href="#" class="cate-tag">{{ article.categorie.nom }}</a>
-                            </div>
-                            <h3><a href="{{ path('front_article',{
-
-                                    'categorie':article.categorie.slug,
-                                    'slug': article.slug,
-                                    'id':article.id
-
-
-                                }) }}">{{ article.titre }}</a></h3>
-                            <div class="meta-post">
-                                <a href="#">
-                                    {{ article.membre.nom~' '~article.membre.prenom }}
-                                </a>
-                                <em></em>
-                                <span>
-							{{ article.datecreation | date('d-M-Y') }}
-						</span>
-                            </div>
-                        </div>
-                    </div>
                 {% endfor %}
 
             </div>

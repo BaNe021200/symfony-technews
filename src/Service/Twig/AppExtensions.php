@@ -16,6 +16,7 @@ use Twig\Extension\AbstractExtension;
 class AppExtensions extends AbstractExtension
 {
     private $em;
+    public const NB_SUMMARY_CHAR = 170;
 
     /**
      * AppExtensions constructor.
@@ -24,6 +25,21 @@ class AppExtensions extends AbstractExtension
     public function __construct(EntityManagerInterface $manager)
     {
         $this->em = $manager;
+    }
+
+    public function getFilters()
+    {
+        return [
+            new \Twig_Filter('summary', function ($text){
+                #Suppression des balises HTML
+                $string = strip_tags($text);
+                if (strlen($string)>self::NB_SUMMARY_CHAR){
+                  $stringCut = substr($string,0,self::NB_SUMMARY_CHAR);
+                  $string = substr($stringCut,0,strpos($stringCut, ' ')).'...';
+                }
+                return $string;
+            }, ['is_safe' =>['html']])
+        ];
     }
 
 
@@ -41,6 +57,8 @@ class AppExtensions extends AbstractExtension
 
         ];
     }
+
+
 
 
 

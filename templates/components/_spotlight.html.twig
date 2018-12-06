@@ -2,12 +2,12 @@
     <article class="spotlight-item">
         <div class="spotlight-img">
             <img alt="{{ article.titre }}"
-                 src="{{ asset('images/product/'~article.featuredimage) }}" class="img-responsive"/>
+                 src="{{ asset('images/music/'~article.featuredimage) }}" class="img-responsive"/>
             <a href="{{ path('index_categorie', { 'slug' : article.categorie.slug }) }}" class="cate-tag">{{ article.categorie.nom }}</a>
         </div>
         <div class="spotlight-item-caption">
             <h2 class="font-heading">
-                <a href="{{ path('index_article', {
+                <a href="{{ path('front_article', {
                     'categorie': article.categorie.slug,
                     'slug': article.slug,
                     'id': article.id
@@ -24,7 +24,7 @@
                     {{ article.datecreation | date('d/m/Y') }}
                 </span>
             </div>
-            {# ICI REPOSE MON ACCROCHE #}
+            {{ article.contenu | summary }}
         </div>
     </article>
 </div>

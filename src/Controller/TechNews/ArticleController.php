@@ -9,6 +9,7 @@
 namespace App\Controller\TechNews;
 
 
+use App\Article\ArticleType;
 use App\Controller\HelperTrait;
 use App\Entity\Article;
 use App\Entity\Categorie;
@@ -87,81 +88,11 @@ class ArticleController extends Controller
 
         $article = new Article();
         $article->setMembre($membre);
-        $form= $this->createFormBuilder($article)
-            ->add('titre', TextType::class,[
-                'required'=>true,
-                'label'=> "titre de l'article",
-                'attr'=>[
-                    'placeholder'=>"titre de l'article"
-                ]
+        $form= $this->createForm(ArticleType::class,$article)
 
+        ->handleRequest($request);
 
-            ])->add('categorie',EntityType::class,[
-                'class'=>Categorie::class,
-                'choice_label'=>'nom',
-                'expanded'=>false,
-                'multiple'=>false,
-                'label'=>"Catégories",
-
-
-            ])
-
-
-            ->add('contenu', CKEditorType::class,[
-                'required'=>true,
-                'label'=> "Contenu",
-                'attr'=>[
-                    'placeholder'=>"contenu"
-                ],
-                'config' =>[
-                    'toolbar'=>'standard'
-                ]
-
-
-            ])
-            ->add('featuredImage', FileType::class,[
-                'required'=>true,
-                'label'=> 'FeaturedImage (Jpg file)',
-                'attr'=>[
-                    'class'=>"dropify"
-                ]
-
-
-            ])
-            ->add('special', CheckboxType::class,[
-
-                'required'=>false,
-
-                'attr'=>[
-                    'data-toggle'=>"toggle",
-                    'data-on'=> 'oui',
-                    'data-off'=>'non',
-                ]
-
-
-            ])
-            ->add('spotlight', CheckboxType::class,[
-
-                'required'=>false,
-
-                'attr'=>[
-                    'data-toggle'=>"toggle",
-                    'data-on'=> 'oui',
-                    'data-off'=>'non',
-                ]
-
-
-            ])
-
-            ->add('submit', SubmitType::class,[
-                'label'=> "submit",
-
-
-
-            ])
-        ->getForm();
-
-        $form->handleRequest($request);
+       // $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
@@ -194,7 +125,7 @@ class ArticleController extends Controller
             $em->persist($article);
             $em->flush();
             #notification
-            $this->addFlash('notice',"Felicitation votre article est en lign");
+            $this->addFlash('notice',"Felicitation votre article est en ligne");
             #redirection vers l'article
 
             return $this->redirectToRoute('front_article',[
@@ -204,7 +135,7 @@ class ArticleController extends Controller
             ]);
 
 
-            dump($article);
+
 
         }
 
