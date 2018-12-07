@@ -15,7 +15,7 @@
 /src/Kernel.php
 /config/services.yaml
 /config/bundles.php
-/config/packages/
+
 
 /config/bootstrap.php
 /config/routes/
@@ -23,3 +23,6 @@
 /public/fonts/
 /public/js/
 /bin/console
+/config/packages/test/
+/config/packages/prod/
+/config/packages/dev/

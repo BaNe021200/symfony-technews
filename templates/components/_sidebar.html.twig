@@ -1,5 +1,38 @@
 <!--colright-->
 <div class="col-md-4 col-sm-12">
+
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <h3 class="text-center alert alert-success">Bonjour {{ app.user.prenom }}</h3>
+
+
+
+    <h4 class="text-center alert alert-info">
+
+        {% if is_granted('ROLE_ADMIN') %} Administrateur
+        {% elseif is_granted('ROLE_AUTEUR') %}
+            Auteur
+        {% else %}
+            Membre
+        {% endif %}
+    </h4>
+
+    <ul class="list-group">
+        {% if is_granted('ROLE_AUTEUR') %}
+            <li class="list-group-item text-center">
+                <a href="{{ path('new_article') }}">
+                    <i class="fas fa-pen-fancy "></i>  Rédiger un article
+                </a>
+            </li>
+        {% endif %}
+        <li class="list-group-item text-center"><a href="{{ path('security_deconnexion') }}"><i class="fas fa-sign-out-alt "></i> Déconnexion</a></li>
+
+
+    </ul>{% endif %}
+
+
+
+
     <!--tab popular-->
     <ul role="tablist" class="tab-popular">
         <li class="active">

@@ -38,7 +38,7 @@ class Article
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="vous devez téléverser une image")
-     * @Assert\Image(mimeTypes="image/jpeg",mimeTypes="image/png",maxSize="2M",maxWidthMessage="votre fichier ne doit pas dépasser {{limit}} mo")
+     * @Assert\Image(maxSize="2M",maxWidthMessage="votre fichier ne doit pas dépasser {{limit}} mo",mimeTypesMessage="vérifier le type de votre image")
      *
      */
     private $featuredImage;

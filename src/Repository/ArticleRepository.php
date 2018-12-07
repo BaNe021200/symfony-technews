@@ -50,6 +50,26 @@ class ArticleRepository extends ServiceEntityRepository
     }
     */
 
+
+    /*public function findByDirname($dirname)
+    {
+        return $this->createQueryBuilder('query')
+            ->andWhere('query.dirname = :dir')
+            ->setParameter('dir', $dirname)
+            ->orderBy('query.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+
+
+
+
+
+
+    }*/
+
+
     public function findLatestArticles()
     {
 

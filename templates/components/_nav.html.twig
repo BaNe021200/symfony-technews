@@ -44,6 +44,13 @@
                       }) }}">{{ categorie.nom }}</a>
                   </li>
                 {% endfor %}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li><a href="{{ path('security_deconnexion') }}"><i class="fas fa-sign-out-alt"></i></a></li>
+                  {% else %}
+                <li {{ active == 'inscription' ? 'class="current"' }}><a href="{{ path('membre_inscription') }}">Inscription</a></li>
+                <li{{ active == 'connexion' ? 'class="current"' }}><a href="{{ path('security_connexion') }}"><i class="fas fa-sign-in-alt"></i></a></li>
+                {% endif %}
+
 
             </ul>
             <div class="search-icon">

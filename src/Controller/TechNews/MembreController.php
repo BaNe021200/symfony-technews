@@ -42,7 +42,7 @@ class MembreController extends AbstractController
 
             $this->addFlash('notice','Félicitation, vous pouvez vous connecter');
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('security_connexion');
 
 
     }

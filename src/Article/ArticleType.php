@@ -64,7 +64,8 @@ class ArticleType extends AbstractType
             'required'=>true,
             'label'=> 'FeaturedImage (Jpg file)',
             'attr'=>[
-                'class'=>"dropify"
+                'class'=>"dropify",
+                'data-default-file' => $options['image_url']
             ]
 
 
@@ -105,7 +106,8 @@ class ArticleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
        $resolver->setDefaults([
-           'data_class' => Article::class
+           'data_class' => Article::class,
+           'image_url' =>null
 
        ]);
     }

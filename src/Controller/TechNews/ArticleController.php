@@ -16,14 +16,17 @@ use App\Entity\Categorie;
 use App\Entity\Membre;
 use App\Repository\MembreRepository;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Asset\Packages;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -80,14 +83,19 @@ class ArticleController extends Controller
 
     /**
      * @Route("/newArticle",name="new_article")
+     * @Security("has_role('ROLE_AUTEUR')")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @throws \Exception
      */
     public function newArticle(Request $request)
     {
-        $membre =$this->getDoctrine()->getRepository(Membre::class)
-        ->find(1);
+        #recup d'un membre
+        #$membre =$this->getDoctrine()->getRepository(Membre::class)
+        #->find(1);
 
         $article = new Article();
-        $article->setMembre($membre);
+        $article->setMembre($this->getUser());
         $form= $this->createForm(ArticleType::class,$article)
 
         ->handleRequest($request);
@@ -159,4 +167,45 @@ class ArticleController extends Controller
         // uniqid(), which is based on timestamps
         return md5(uniqid());
     }
+
+
+    /**
+     * @Route("/editArticle/{id<\d+>}",name="edit_article")
+     * @Security("has_role('ROLE_AUTEUR')")
+     *
+     */
+     public function modifyArticle(Request $request, Article $article,Packages $packages)
+     {
+        /* $article->getMembre();
+         $membre= $this->getUser();
+
+         if ($article == $membre)
+         {
+             $this->newArticle();
+
+         }*/
+
+
+
+         $options=[
+             'image_url'=>$packages->getUrl('images/music/'.$article->getFeaturedImage())
+         ];
+
+
+        $article->setFeaturedImage(
+            new File($this->getParameter('articles_assets_dir').'/'.$article->getFeaturedImage())
+        );
+
+
+        $form= $this->createForm(ArticleType::class,$article,$options)
+
+             ->handleRequest($request);
+
+    return $this->render('article/form.html.twig',[
+             'form'=>$form->createView()
+
+         ]);
+
+     }
+
 }
