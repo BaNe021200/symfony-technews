@@ -171,10 +171,10 @@ class ArticleController extends Controller
 
     /**
      * @Route("/editArticle/{id<\d+>}",name="edit_article")
-     * @Security("has_role('ROLE_AUTEUR')")
+     * @Security("article.isAuteur(user)")
      *
      */
-     public function modifyArticle(Request $request, Article $article,Packages $packages)
+     public function editArticle(Request $request, Article $article,Packages $packages)
      {
         /* $article->getMembre();
          $membre= $this->getUser();
@@ -186,20 +186,75 @@ class ArticleController extends Controller
          }*/
 
 
-
+            #on passe l'url de feturedimage à notre controler
          $options=[
              'image_url'=>$packages->getUrl('images/music/'.$article->getFeaturedImage())
          ];
 
+           # recup de l'image
+         $featuredImageName = $article->getFeaturedImage();
 
+         #notre formulaire attend une instance de File pour l'édition de la featuredImage
         $article->setFeaturedImage(
             new File($this->getParameter('articles_assets_dir').'/'.$article->getFeaturedImage())
         );
 
-
+        # création /  récup deu formumlaire
         $form= $this->createForm(ArticleType::class,$article,$options)
 
              ->handleRequest($request);
+        # si le formulaire est valide
+         if ($form->isSubmitted() && $form->isValid())
+         {
+             #
+             #traitement de l'upload
+             // $file stores the uploaded PDF file
+             /** @var UploadedFile $featuredImage */
+
+             $featuredImage = $article->getFeaturedImage();
+             if (null !== $featuredImage) {
+
+                 $fileName = $this->slugify($article->getTitre())
+                     . '.' . $featuredImage->guessExtension();
+
+                 try {
+                     $featuredImage->move(
+                         $this->getParameter('articles_assets_dir'),
+                         $fileName
+                     );
+                 } catch (FileException $e) {
+
+                 }
+
+                 # Mise à jour de l'image
+                 $article->setFeaturedImage($fileName);
+
+             } else {
+                 $article->setFeaturedImage($featuredImageName);
+             }
+             #mise à jour du slug
+
+             $article->setSlug($this->slugify($article->getTitre()));
+
+             #sauvegarde en BDD
+
+             $em= $this->getDoctrine()->getManager();
+             $em->persist($article);
+             $em->flush();
+             #notification
+             $this->addFlash('notice',"Felicitation votre article est en ligne");
+             #redirection vers l'article
+
+             return $this->redirectToRoute('front_article',[
+                 'categorie' => $article->getCategorie()->getslug(),
+                 'slug' => $article->getSlug(),
+                 'id'=>$article->getId()
+             ]);
+
+
+
+
+         }
 
     return $this->render('article/form.html.twig',[
              'form'=>$form->createView()

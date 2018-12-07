@@ -37,7 +37,7 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="vous devez téléverser une image")
+
      * @Assert\Image(maxSize="2M",maxWidthMessage="votre fichier ne doit pas dépasser {{limit}} mo",mimeTypesMessage="vérifier le type de votre image")
      *
      */
@@ -208,6 +208,14 @@ class Article
         return $this;
     }
 
-
+    /**
+     * @param Membre|null $membre
+     * @return bool
+     *
+     */
+    public function isAuteur(?Membre $membre = null):bool
+    {
+        return $membre && $this->getMembre()->getId() === $membre->getId();
+    }
 
 }

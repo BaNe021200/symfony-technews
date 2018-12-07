@@ -136,7 +136,7 @@ class FrontController extends Controller
     }
 
 
-    public function sidebar()
+    public function sidebar(?Article $article =null)
     {
         $repository = $this->getDoctrine()->getRepository(Article::class);
         $articles = $repository->findLatestArticles();
@@ -145,7 +145,8 @@ class FrontController extends Controller
         return $this->render('components/_sidebar.html.twig',[
 
             'articles'=> $articles,
-            'specials'=> $specials
+            'article'=> $article,
+            'specials'=> $specials,
 
         ]);
 
