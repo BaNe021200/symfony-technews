@@ -23,7 +23,7 @@
                 and (article.isAuteur(app.user) and is_granted('ROLE_AUTEUR'))
 
             %}
-                <li class="list-group-item"><a href="{{ path('edit_article',{'id': article.id}) }}">Editer l'article</a></li>
+                <li class="list-group-item text-center"><a href="{{ path('edit_article',{'id': article.id}) }}"><i class="fas fa-edit"></i> Editer l'article</a></li>
 
 
             {% endif %}
@@ -104,27 +104,27 @@
         <ul class="list-social-icon">
             <li>
                 <a href="#" class="facebook">
-                    <i class="fa fa-facebook"></i>
+                    <i class="fab fa-facebook"></i>
                 </a>
             </li>
             <li>
                 <a href="#" class="twitter">
-                    <i class="fa fa-twitter"></i>
+                    <i class="fab fa-twitter"></i>
                 </a>
             </li>
             <li>
                 <a href="#" class="google">
-                    <i class="fa fa-google"></i>
+                    <i class="fab fa-google"></i>
                 </a>
             </li>
             <li>
                 <a href="#" class="youtube">
-                    <i class="fa fa-youtube-play"></i>
+                    <i class="fab fa-youtube"></i>
                 </a>
             </li>
             <li>
                 <a href="#" class="pinterest">
-                    <i class="fa fa-pinterest-p"></i>
+                    <i class="fab fa-pinterest-p"></i>
                 </a>
             </li>
             <li>

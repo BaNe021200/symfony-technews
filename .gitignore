@@ -12,13 +12,7 @@
 ###< symfony/web-server-bundle ###
 /public/images/
 /.idea/
-/src/Kernel.php
-/config/services.yaml
-/config/bundles.php
 
-
-/config/bootstrap.php
-/config/routes/
 /public/css/
 /public/fonts/
 /public/js/
