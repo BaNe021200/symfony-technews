@@ -52,7 +52,10 @@ class MembreType extends AbstractType
             ->add('conditions', CheckboxType::class,[
                'label' => 'J\'accepte les CGU',
                'attr'=> [
-                   'placeholder'=> 'saisissez votre mot de passe'
+                   'data-toggle' => 'toggle',
+                   'data-on' => 'Oui',
+                   'data-off' => 'Non',
+
                ]
             ])
             ->add('submit', SubmitType::class,[

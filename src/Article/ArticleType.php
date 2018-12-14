@@ -26,80 +26,75 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ArticleType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+
+
             ->add('titre', TextType::class,[
-        'required'=>true,
-        'label'=> "titre de l'article",
-        'attr'=>[
-            'placeholder'=>"titre de l'article"
-        ]
+                'required'=>true,
+                'label'=> "titre de l'article",
+                'attr'=>[
+                    'placeholder'=>"titre de l'article"
+                ]
+            ])
+
+            ->add('categorie',EntityType::class,[
+                'class'=>Categorie::class,
+                'choice_label'=>'nom',
+                'expanded'=>false,
+                'multiple'=>false,
+                'label'=>"Catégories",
 
 
-    ])->add('categorie',EntityType::class,[
-        'class'=>Categorie::class,
-        'choice_label'=>'nom',
-        'expanded'=>false,
-        'multiple'=>false,
-        'label'=>"Catégories",
+            ])
 
 
-    ])
+            ->add('contenu', CKEditorType::class,[
+                'required'=>true,
+                'label'=> "Contenu",
+                'attr'=>[
+                    'placeholder'=>"contenu"
+                ],
+                'config' =>[
+                    'toolbar'=>'standard'
+                ]
 
 
-        ->add('contenu', CKEditorType::class,[
-            'required'=>true,
-            'label'=> "Contenu",
-            'attr'=>[
-                'placeholder'=>"contenu"
-            ],
-            'config' =>[
-                'toolbar'=>'standard'
-            ]
+            ])->add('featuredImage',FileType::class,[
+                'attr'=>[
+                    'label'=>false,
+                    'class' => 'dropify',
+                    'data-default-file' => $options['image_url']
+                ]
+            ])
+
+            ->add('special', CheckboxType::class,[
+
+                'required'=>false,
+
+                'attr'=>[
+                    'data-toggle'=>"toggle",
+                    'data-on'=> 'oui',
+                    'data-off'=>'non',
+                ]
+            ])
+            ->add('spotlight', CheckboxType::class,[
+
+                'required'=>false,
+
+                'attr'=>[
+                    'data-toggle'=>"toggle",
+                    'data-on'=> 'oui',
+                    'data-off'=>'non',
+                ]
 
 
-        ])
-        ->add('featuredImage', FileType::class,[
-            'required'=>true,
-            'label'=> 'FeaturedImage (Jpg file)',
-            'attr'=>[
-                'class'=>"dropify",
-                'data-default-file' => $options['image_url']
-            ]
-
-
-        ])
-        ->add('special', CheckboxType::class,[
-
-            'required'=>false,
-
-            'attr'=>[
-                'data-toggle'=>"toggle",
-                'data-on'=> 'oui',
-                'data-off'=>'non',
-            ]
-
-
-        ])
-        ->add('spotlight', CheckboxType::class,[
-
-            'required'=>false,
-
-            'attr'=>[
-                'data-toggle'=>"toggle",
-                'data-on'=> 'oui',
-                'data-off'=>'non',
-            ]
-
-
-        ])
+            ])
 
         ->add('submit', SubmitType::class,[
             'label'=> "submit",
-
-
-
         ]);
     }
 
