@@ -23,6 +23,7 @@ class AppExtensions extends AbstractExtension
     /**
      * AppExtensions constructor.
      * @param EntityManagerInterface $manager
+     * @param SessionInterface $session
      */
     public function __construct(EntityManagerInterface $manager, SessionInterface $session)
     {

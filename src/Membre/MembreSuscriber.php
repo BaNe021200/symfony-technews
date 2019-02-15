@@ -34,11 +34,11 @@ class MembreSuscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return[
-            SecurityEvents::INTERACTIVE_LOGIN=>'onSecurityIinteractiveLogin'
+            SecurityEvents::INTERACTIVE_LOGIN=>'onSecurityInteractiveLogin'
         ];
     }
 
-    public function onSecurityIinteractiveLogin(InteractiveLoginEvent $event)
+    public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)
     {
         #recup de l'utilisateur
         $membre = $event->getAuthenticationToken()->getUser();
